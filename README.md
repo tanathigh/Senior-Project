@@ -6,6 +6,7 @@
 - D10 D20 D30 represent to setting value for channel 1 2 3 [SV]
 - D100(+28) represent to channel 1 parameter for PID control
 - D150 represent to channel 1 analog output [MV]
+- D8015 D8014 D8013 represent to hr/min/sec
 
 # Input Relay [X]
 - X10 is used for comment the ladder
