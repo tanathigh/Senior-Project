@@ -1,0 +1,22 @@
+{
+    "sensors": [
+        {
+            "sensorId": 1,
+            "sensorName": "Temperature",
+            "measurement": "120",
+            "thumbnail": "/images/sensor/temp.png"
+        },
+        {
+            "sensorId": 2,
+            "sensorName": "Humidity",
+            "measurement": "90",
+            "thumbnail": "/images/sensor/humid.png"
+        },
+        {
+            "sensorId": 3,
+            "sensorName": "Pressure",
+            "measurement": "200",
+            "thumbnail": "/images/sensor/press.png"
+        }
+    ]
+}

@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import TemperatureIcon from "@material-ui/icons/AcUnit";
+import HumidityIcon from "@material-ui/icons/Opacity";
+import PressureIcon from "@material-ui/icons/Cloud";
+import Typography from "@material-ui/core/Typography";
 
 class Header extends Component {
   constructor(props) {
@@ -26,6 +30,22 @@ class Header extends Component {
           <img src="/images/logo/logo.png" width="30" height="30" alt="" />
           &nbsp; Climate Control System
         </a>
+
+        <TemperatureIcon style={{ fill: "#ec1c24" }} />
+        <Typography variant="h6" style={{ color: "#ffebee" }}>
+          100 C
+        </Typography>
+
+        <HumidityIcon style={{ fill: "#0072ea" }} />
+        <Typography variant="h6" style={{ color: "#ffebee" }}>
+          50 %
+        </Typography>
+
+        <PressureIcon style={{ fill: "#68ec1c" }} />
+        <Typography variant="h6" style={{ color: "#ffebee" }}>
+          1 Pa
+        </Typography>
+
         <span className="navbar-text">{this.state.date.toLocaleString()}</span>
       </nav>
     );

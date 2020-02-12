@@ -1,41 +1,48 @@
 import React from "react";
-import ListItem from "@material-ui/core/ListItem";
+import { ListItem, styled } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import PeopleIcon from "@material-ui/icons/People";
+import Button from "@material-ui/core/Button";
 import BarChartIcon from "@material-ui/icons/BarChart";
+import PeopleIcon from '@material-ui/icons/People';
+import EditIcon from "@material-ui/icons/Edit";
 import LayersIcon from "@material-ui/icons/Layers";
 import TemperatureIcon from "@material-ui/icons/AcUnit";
 import HumidityIcon from "@material-ui/icons/Opacity";
 import PressureIcon from "@material-ui/icons/Cloud";
+import HistoryIcon from "@material-ui/icons/History";
+import Divider from "@material-ui/core/Divider";
+import HomeIcon from "@material-ui/icons/Home";
+
+const StyledListItem = styled(ListItem)({
+  backgroundColor: "#343a40"
+});
 
 export const mainListItems = (
   <div>
     <ListItem button onClick={() => console.log("p")}>
       <ListItemIcon>
-        <DashboardIcon />
+        <HomeIcon />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText primary="Home" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <HistoryIcon />
       </ListItemIcon>
-      <ListItemText primary="Orders" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
+      <ListItemText primary="History" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
-      <ListItemText primary="Reports" />
+      <ListItemText primary="Chart" />
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      <ListItemText primary="Employee" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
@@ -48,6 +55,14 @@ export const mainListItems = (
 
 export const sensorListItems = (
   <div>
+    <StyledListItem>
+      <ListItemText
+        primaryTypographyProps={{ style: { color: "white" } }}
+        primary="Current SV"
+        align="center"
+      />
+    </StyledListItem>
+    <Divider />
     <ListItem>
       <ListItemIcon>
         <TemperatureIcon />
@@ -69,5 +84,15 @@ export const sensorListItems = (
       <ListItemText primary="Pressure" />
       <ListItemText secondary="1 Pa" align="right" />
     </ListItem>
+    <div align="center">
+      <Button
+        size="small"
+        variant="contained"
+        color="default"
+        startIcon={<EditIcon />}
+      >
+        Edit
+      </Button>
+    </div>
   </div>
 );

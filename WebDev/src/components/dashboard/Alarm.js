@@ -70,7 +70,7 @@ export default function Alarm() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Title>Recent Alarms</Title>
+      <Title>Today Alarms</Title>
       <Table size="small">
         <TableHead>
           <TableRow>

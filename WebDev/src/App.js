@@ -2,6 +2,9 @@ import "./App.css";
 import React, { Component } from "react";
 import Header from "./components/others/Header";
 import { default as Dashboard } from "./components/monitor/Monitor";
+import { default as SignInSide } from "./components/sign-in";
+import { default as SignUp } from "./components/sign-up";
+import axios from "axios";
 
 class App extends Component {
   constructor(props) {
@@ -10,27 +13,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      sensors: [
-        {
-          sensorId: 1,
-          sensorName: "Temperature",
-          measurement: "120",
-          thumbnail: "/images/sensor/temp.png"
-        },
-        {
-          sensorId: 2,
-          sensorName: "Humidity",
-          measurement: "90",
-          thumbnail: "/images/sensor/humid.png"
-        },
-        {
-          sensorId: 3,
-          sensorName: "Pressure",
-          measurement: "200",
-          thumbnail: "/images/sensor/press.png"
-        }
-      ]
+    // fetch("http://localhost:3001/sensors", { method: "GET" })
+    //   .then(res => res.json())
+    //   .then(res => {
+    //     this.setState({ product: res });
+    //   });
+    axios.get("http://localhost:3001/sensors").then(res => {
+      this.setState({ sensors: res });
+      console.log(res);
     });
   }
 
@@ -38,7 +28,6 @@ class App extends Component {
     return (
       <div>
         <Header />
-        {/* <Monitor sensors={this.state.sensors} /> */}
         <Dashboard />
       </div>
     );
