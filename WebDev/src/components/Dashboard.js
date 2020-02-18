@@ -1,20 +1,21 @@
-import React from "react";
+import React, { Component } from "react";
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import Box from "@material-ui/core/Box";
-import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
-import { mainItems, default as SubItems } from "./others/Sidebar";
+import { default as SubItems } from "./others/SubSideBar";
+import { default as MainItems } from "./others/MainSideBar";
 import Chart from "./dashboard/HistoryChart";
 import EditSV from "./dashboard/EditSV";
 import Alarm from "./dashboard/Alarm";
+import Home from "./dashboard/Home";
 
 function Footer() {
   return (
@@ -29,7 +30,7 @@ function Footer() {
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
   root: {
     display: "flex"
   },
@@ -106,64 +107,94 @@ const useStyles = makeStyles(theme => ({
   fixedHeight: {
     height: 240
   }
-}));
+});
 
-export default function Dashboard(props) {
-  const classes = useStyles();
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+class Dashboard extends Component {
+  state = { sensors: "", page: "0" };
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper)
-        }}
-      >
-        <Divider />
-        {props.page > 0 ? (
-          <SubItems page={props.page} />
-        ) : (
-          <List>{mainItems}</List>
-        )}
-      </Drawer>
+  callbackFunction = childData => {
+    this.setState({ page: childData });
+    console.log(this.state.page);
+  };
 
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            {/* <Grid item xs={12} md={8} lg={9}> */}
-            {/* EditSV */}
-            {props.page === "1" && (
-              <Grid item xs={12}>
-                <Paper className={classes.paper}>
-                  <EditSV />
-                </Paper>
-              </Grid>
-            )}
-            {/* History Chart */}
-            {props.page === "2" && (
-              <Grid item xs={12}>
-                <Paper className={fixedHeightPaper}>
-                  <Chart />
-                </Paper>
-              </Grid>
-            )}
-            {/* Recent Alarms */}
-            {props.page === "3" && (
-              <Grid item xs={12}>
-                <Paper className={classes.paper}>
-                  <Alarm />
-                </Paper>
-              </Grid>
-            )}
-          </Grid>
-          <Box pt={4}>
-            <Footer />
-          </Box>
-        </Container>
-      </main>
-    </div>
-  );
+  constructor(props) {
+    super(props);
+    this.fixedHeightPaper = clsx(this.props.paper, this.props.fixedHeight);
+    console.log(this.state.page);
+  }
+  componentDidMount() {}
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: clsx(classes.drawerPaper)
+          }}
+        >
+          <Divider />
+          {this.state.page > 0 ? (
+            <SubItems
+              page={this.state.page}
+              parentCallback={this.callbackFunction}
+            />
+          ) : (
+            <MainItems
+              page={this.state.page}
+              parentCallback={this.callbackFunction}
+            />
+          )}
+        </Drawer>
+
+        <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+          <Container maxWidth="lg" className={classes.container}>
+            <Grid container spacing={3}>
+              {/* <Grid item xs={12} md={8} lg={9}> */}
+              {/* EditSV */}
+              {this.state.page === "1" && (
+                <Grid item xs={12}>
+                  <Paper className={classes.paper}>
+                    <EditSV />
+                  </Paper>
+                </Grid>
+              )}
+              {/* History Chart */}
+              {this.state.page === "2" && (
+                <Grid item xs={12}>
+                  <Paper className={this.fixedHeightPaper}>
+                    <Chart />
+                  </Paper>
+                </Grid>
+              )}
+              {/* Home */}
+              {this.state.page === "0" && (
+                <Grid item xs={12}>
+                  <Paper className={classes.paper}>
+                    <Home />
+                  </Paper>
+                </Grid>
+              )}
+              {/* Recent Alarms */}
+              {this.state.page === "-1" && (
+                <Grid item xs={12}>
+                  <Paper className={classes.paper}>
+                    <Alarm />
+                  </Paper>
+                </Grid>
+              )}
+            </Grid>
+            <Box pt={4}>
+              <Footer />
+            </Box>
+          </Container>
+        </main>
+      </div>
+    );
+  }
 }
+
+export default withStyles(styles, { withTheme: true })(Dashboard);

@@ -8,8 +8,11 @@ import { default as Dashboard } from "../components/Dashboard";
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { sensors: "", page: "3" };
   }
+
+  callbackFunction = childData => {
+    this.setState({ page: childData });
+  };
 
   componentDidMount() {
     // axios.get("http://localhost:5000/sensors").then(res => {
@@ -22,7 +25,9 @@ class Home extends Component {
     return (
       <div>
         <Header />
-        <Dashboard page={this.state.page} />
+        <Dashboard
+          parentCallback={this.callbackFunction}
+        />
       </div>
     );
   }
