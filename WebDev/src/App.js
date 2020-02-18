@@ -1,36 +1,23 @@
 import "./App.css";
 import React, { Component } from "react";
-import Header from "./components/others/Header";
-import { default as Dashboard } from "./components/monitor/Monitor";
-import { default as SignInSide } from "./components/sign-in";
-import { default as SignUp } from "./components/sign-up";
-import axios from "axios";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Home from "./containers/Home";
+import SignIn from "./containers/SignIn";
+import SignUp from "./containers/SignUp";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { sensors: "" };
-  }
-
-  componentDidMount() {
-    // fetch("http://localhost:3001/sensors", { method: "GET" })
-    //   .then(res => res.json())
-    //   .then(res => {
-    //     this.setState({ product: res });
-    //   });
-    axios.get("http://localhost:3001/sensors").then(res => {
-      this.setState({ sensors: res });
-      console.log(res);
-    });
+  renderRouter() {
+    return (
+      <Switch>
+        <Route path="/signin" component={SignIn} />
+        <Route path="/signup" component={SignUp} />
+        <Route path="/" component={Home} />
+      </Switch>
+    );
   }
 
   render() {
-    return (
-      <div>
-        <Header />
-        <Dashboard />
-      </div>
-    );
+    return <BrowserRouter>{this.renderRouter()}</BrowserRouter>;
   }
 }
 

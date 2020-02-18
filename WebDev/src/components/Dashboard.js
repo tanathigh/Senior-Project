@@ -11,10 +11,10 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
-import { mainListItems, sensorListItems } from "../others/Sidebar";
-import Chart from "../dashboard/HistoryChart";
-import Deposits from "../dashboard/SV";
-import { default as Alarm } from "../dashboard/Alarm";
+import { mainItems, default as SubItems } from "./others/Sidebar";
+import Chart from "./dashboard/HistoryChart";
+import EditSV from "./dashboard/EditSV";
+import Alarm from "./dashboard/Alarm";
 
 function Footer() {
   return (
@@ -108,10 +108,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
 
   return (
     <div className={classes.root}>
@@ -123,34 +122,42 @@ export default function Dashboard() {
         }}
       >
         <Divider />
-        <List>{mainListItems}</List>
-        <List>{sensorListItems}</List>
+        {props.page > 0 ? (
+          <SubItems page={props.page} />
+        ) : (
+          <List>{mainItems}</List>
+        )}
       </Drawer>
 
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* SV */}
-            {/* <Grid item xs={12} md={4} lg={3}> */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Deposits />
-              </Paper>
-            </Grid>
-            {/* History Chart */}
             {/* <Grid item xs={12} md={8} lg={9}> */}
-            <Grid item xs={12}>
-              <Paper className={fixedHeightPaper}>
-                <Chart />
-              </Paper>
-            </Grid>
+            {/* EditSV */}
+            {props.page === "1" && (
+              <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  <EditSV />
+                </Paper>
+              </Grid>
+            )}
+            {/* History Chart */}
+            {props.page === "2" && (
+              <Grid item xs={12}>
+                <Paper className={fixedHeightPaper}>
+                  <Chart />
+                </Paper>
+              </Grid>
+            )}
             {/* Recent Alarms */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Alarm />
-              </Paper>
-            </Grid>
+            {props.page === "3" && (
+              <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  <Alarm />
+                </Paper>
+              </Grid>
+            )}
           </Grid>
           <Box pt={4}>
             <Footer />
