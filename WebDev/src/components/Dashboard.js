@@ -16,6 +16,8 @@ import Chart from "./dashboard/HistoryChart";
 import EditSV from "./dashboard/EditSV";
 import Alarm from "./dashboard/Alarm";
 import Home from "./dashboard/Home";
+import Employee from "./dashboard/Employee";
+import Machine from "./dashboard/Machine";
 
 function Footer() {
   return (
@@ -114,13 +116,11 @@ class Dashboard extends Component {
 
   callbackFunction = childData => {
     this.setState({ page: childData });
-    console.log(this.state.page);
   };
 
   constructor(props) {
     super(props);
     this.fixedHeightPaper = clsx(this.props.paper, this.props.fixedHeight);
-    console.log(this.state.page);
   }
   componentDidMount() {}
 
@@ -152,41 +152,76 @@ class Dashboard extends Component {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
-            <Grid container spacing={3}>
-              {/* <Grid item xs={12} md={8} lg={9}> */}
-              {/* EditSV */}
-              {this.state.page === "1" && (
+            {/* <Grid item xs={12} md={8} lg={9}> */}
+            {/* EditSV */}
+            {this.state.page === "1" && (
+              <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <Paper className={classes.paper}>
                     <EditSV />
                   </Paper>
                 </Grid>
-              )}
-              {/* History Chart */}
-              {this.state.page === "2" && (
+              </Grid>
+            )}
+            {/* History Chart */}
+            {this.state.page === "2" && (
+              <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <Paper className={this.fixedHeightPaper}>
                     <Chart />
                   </Paper>
                 </Grid>
-              )}
-              {/* Home */}
-              {this.state.page === "0" && (
-                <Grid item xs={12}>
+              </Grid>
+            )}
+            {/* Machine */}
+            {this.state.page === "3" && (
+              <Grid container spacing={3}>
+                <Grid item xs={12} md={8} lg={9}>
                   <Paper className={classes.paper}>
-                    <Home />
+                    <Machine />
                   </Paper>
                 </Grid>
-              )}
-              {/* Recent Alarms */}
-              {this.state.page === "-1" && (
+                <Grid item xs={12}>
+                  <Paper className={classes.paper}>
+                    <Machine />
+                  </Paper>
+                </Grid>
+              </Grid>
+            )}
+            {/* Home */}
+            {this.state.page === "0" && (
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <Paper className={classes.paper}>
+                    <Home
+                      page={this.state.page}
+                      parentCallback={this.callbackFunction}
+                    />
+                  </Paper>
+                </Grid>
+              </Grid>
+            )}
+            {/* Recent Alarms */}
+            {this.state.page === "-1" && (
+              <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <Paper className={classes.paper}>
                     <Alarm />
                   </Paper>
                 </Grid>
-              )}
-            </Grid>
+              </Grid>
+            )}
+            {/* Employee */}
+            {this.state.page === "-2" && (
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <Paper className={classes.paper}>
+                    <Employee />
+                  </Paper>
+                </Grid>
+              </Grid>
+            )}
+
             <Box pt={4}>
               <Footer />
             </Box>

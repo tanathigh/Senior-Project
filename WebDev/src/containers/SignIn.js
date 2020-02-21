@@ -108,7 +108,9 @@ export default function SignIn() {
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              <a href="/" style={{ textDecoration: "none" }}>
+                Sign In
+              </a>
             </Button>
             <Grid container>
               <Grid item xs>

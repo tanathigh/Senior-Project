@@ -6,28 +6,20 @@ import { default as Dashboard } from "../components/Dashboard";
 // import { default as SignUp } from "./components/SignUp";
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   callbackFunction = childData => {
     this.setState({ page: childData });
   };
-
   componentDidMount() {
     // axios.get("http://localhost:5000/sensors").then(res => {
     //   this.setState({ sensors: res });
     //   console.log(res);
     // });
   }
-
   render() {
     return (
       <div>
         <Header />
-        <Dashboard
-          parentCallback={this.callbackFunction}
-        />
+        <Dashboard parentCallback={this.callbackFunction} />
       </div>
     );
   }

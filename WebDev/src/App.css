@@ -29,7 +29,7 @@ h6 {
   background: #343a40;
 }
 #sidebar ul li {
-  color: rgba(255, 255, 255, 1.0);
+  color: rgba(255, 255, 255, 1);
   list-style: none;
   padding: 15px 10px;
   border-bottom: 1px solid rgba(100, 100, 100, 0.3);
@@ -38,4 +38,16 @@ h6 {
   padding-left: 200px;
   width: 100%;
   background-color: #f1f1f1;
+}
+
+#row {
+  display: table;
+  width: 100%; /*Optional*/
+  table-layout: fixed; /*Optional*/
+  border-spacing: 10px; /*Optional*/
+}
+
+#logout {
+  display: table-cell;
+  background-color: red; /*Optional*/
 }

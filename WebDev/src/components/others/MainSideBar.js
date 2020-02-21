@@ -5,6 +5,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import PeopleIcon from "@material-ui/icons/People";
 import HomeIcon from "@material-ui/icons/Home";
+import Badge from "@material-ui/core/Badge";
 import ReportIcon from "@material-ui/icons/Report";
 
 class MainItems extends Component {
@@ -27,11 +28,13 @@ class MainItems extends Component {
           </ListItem>
           <ListItem button onClick={() => this.sendData("-1")}>
             <ListItemIcon>
-              <ReportIcon />
+              <Badge badgeContent={4} color="primary">
+                <ReportIcon />
+              </Badge>
             </ListItemIcon>
             <ListItemText primary="Alarm Report" />
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={() => this.sendData("-2")}>
             <ListItemIcon>
               <PeopleIcon />
             </ListItemIcon>

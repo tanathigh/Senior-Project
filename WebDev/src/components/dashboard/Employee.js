@@ -8,14 +8,13 @@ import TableRow from "@material-ui/core/TableRow";
 import Title from "../others/Title";
 
 // Generate Order Data
-function createData(id, name, type, status) {
-  return { id, name, type, status };
+function createData(id, name, responsibility, tel) {
+  return { id, name, responsibility, tel };
 }
 
 const rows = [
-  createData(0, "Climate 1", "Climate controller", "on"),
-  createData(1, "Belt 1", "Conveyor belt", "off"),
-  createData(2, "Arm 1", "Robotic arm", "off")
+  createData(0, "Nathan", "Engineer", "081-123-4567"),
+  createData(1, "Lisa", "Engineer", "090-345-6789")
 ];
 
 const styles = theme => ({
@@ -24,7 +23,7 @@ const styles = theme => ({
   }
 });
 
-class Home extends Component {
+class Employee extends Component {
   constructor(props) {
     super(props);
     this.sendData = this.sendData.bind(this);
@@ -35,29 +34,23 @@ class Home extends Component {
   render() {
     return (
       <React.Fragment>
-        <Title>Select Machine</Title>
+        <Title>Employee</Title>
         <Table size="small">
           <TableHead>
             <TableRow style={{ backgroundColor: "#343a40" }}>
               <TableCell style={{ color: "white" }}>Name</TableCell>
-              <TableCell style={{ color: "white" }}>Type</TableCell>
-              <TableCell style={{ color: "white" }}>Connection status</TableCell>
-              <TableCell style={{ color: "white" }} align="right">Choose Machine</TableCell>
+              <TableCell style={{ color: "white" }}>Responsibility</TableCell>
+              <TableCell style={{ color: "white" }} align="right">
+                Tel number
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map(row => (
               <TableRow key={row.id}>
                 <TableCell>{row.name}</TableCell>
-                <TableCell>{row.type}</TableCell>
-                <TableCell>{row.status}</TableCell>
-                <TableCell align="right">
-                  {row.status === "on" && (
-                    <button type="button" onClick={() => this.sendData("3")}>
-                      Choose
-                    </button>
-                  )}
-                </TableCell>
+                <TableCell>{row.responsibility}</TableCell>
+                <TableCell align="right">{row.tel}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -67,4 +60,4 @@ class Home extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(Home);
+export default withStyles(styles, { withTheme: true })(Employee);

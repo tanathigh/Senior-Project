@@ -26,11 +26,13 @@ export default function EditSV() {
       <div>
         <Table size="small">
           <TableHead>
-            <TableRow>
-              <TableCell>Sensor</TableCell>
-              <TableCell>Modified date</TableCell>
-              <TableCell>Old Value</TableCell>
-              <TableCell align="right">New value</TableCell>
+            <TableRow style={{ backgroundColor: "#343a40" }}>
+              <TableCell style={{ color: "white" }}>Sensor</TableCell>
+              <TableCell style={{ color: "white" }}>Modified date</TableCell>
+              <TableCell style={{ color: "white" }}>Old Value</TableCell>
+              <TableCell style={{ color: "white" }} align="right">
+                New value
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

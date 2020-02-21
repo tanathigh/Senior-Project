@@ -6,10 +6,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Button from "@material-ui/core/Button";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import EditIcon from "@material-ui/icons/Edit";
-import TemperatureIcon from "@material-ui/icons/AcUnit";
-import HumidityIcon from "@material-ui/icons/Opacity";
-import PressureIcon from "@material-ui/icons/Cloud";
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import InfoIcon from "@material-ui/icons/Info";
 import Divider from "@material-ui/core/Divider";
 
 const StyledListItem = styled(ListItem)({
@@ -37,32 +35,24 @@ class SubItems extends Component {
           <StyledListItem>
             <ListItemText
               primaryTypographyProps={{ style: { color: "white" } }}
-              primary="Machine 1"
+              primary="Machine: Climate 1"
               align="center"
             />
           </StyledListItem>
           <Divider />
-          <ListItem>
+          <ListItem button onClick={() => this.sendData("3")}>
             <ListItemIcon>
-              <TemperatureIcon />
+              <InfoIcon />
             </ListItemIcon>
-            <ListItemText primary="Temperature" />
-            <ListItemText secondary="100 C" align="right" />
+            <ListItemText primary="Information" />
           </ListItem>
-          <ListItem>
+          <ListItem button onClick={() => this.sendData("2")}>
             <ListItemIcon>
-              <HumidityIcon />
+              <BarChartIcon />
             </ListItemIcon>
-            <ListItemText primary="Humidity" />
-            <ListItemText secondary="50%" align="right" />
+            <ListItemText primary="History Chart" />
           </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <PressureIcon />
-            </ListItemIcon>
-            <ListItemText primary="Pressure" />
-            <ListItemText secondary="1 Pa" align="right" />
-          </ListItem>
+          <Divider />
           <div align="center">
             <Button
               size="small"
@@ -74,14 +64,6 @@ class SubItems extends Component {
               Edit SV
             </Button>
           </div>
-          <br />
-          <Divider />
-          <ListItem button onClick={() => this.sendData("2")}>
-            <ListItemIcon>
-              <BarChartIcon />
-            </ListItemIcon>
-            <ListItemText primary="History Chart" />
-          </ListItem>
         </div>
       </List>
     );
