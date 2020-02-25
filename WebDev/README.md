@@ -1,23 +1,21 @@
 # WEBDEV
 
-#Database 1 อันต่อ 1 บริษัท
--พนักงานหลายคนคุม
-emp = [
-    *emp-id,                            tinyint
-    emp-name,                           varchar
-    emp-mail,                           varchar
-    emp-password,                       varchar
-    emp-tel                             varchar
+#Database 1 อันต่อ 1 บริษัท พนักงานหลายคน
+1.พนักงาน
+emp = [*emp-id,                         tinyint
+        emp-name,                       varchar
+        emp-mail,                       varchar
+        emp-tel,                        varchar
+        emp-password,                   varchar
+        machine-id,                     tinyint //หมายเลขเครื่องที่มีสิทธิเข้าไปแก้ไขเครื่องได้
     ]
-
--มีเครื่องจักรหลายเครื่อง
+2.เครื่องจักรหลายเครื่อง
 machine = [*machine-id,                 tinyint
             machine-type,               tinyint
-            machine-name                varchar
+            machine-name,               varchar
             ]
-
--มี alarm เมื่อเกิดขัดข้องจากหลายเครื่องจักร
-alarm = [   *alarm-id,                  tinyint
+3.alarm เมื่อเกิดขัดข้องจากหลายเครื่องจักร
+alarm = [  *alarm-id,                   tinyint
             alarm-time,                 datetime
             alarm-tag,                  varchar
             alarm-prior,                varchar
@@ -25,8 +23,7 @@ alarm = [   *alarm-id,                  tinyint
             alarm-desc,                 varchar
             machine-id                  tinyint
             ]
-
--มีค่าการทำงานของเครื่องจักรไว้ทำ History ทุกๆ 1 นาที
+4.มีค่าการทำงานของเครื่องจักรไว้ทำ History ทุกๆ 1 นาที
 work = [*work-id,                       tinyint
         work-time,                      datetime
         work-pv1,                       tinyint
@@ -35,24 +32,17 @@ work = [*work-id,                       tinyint
         work-sv1,                       tinyint
         work-sv2,                       tinyint
         work-sv3,                       tinyint
-        work-employee,                  varchar
         machine-id                      tinyint
         ] 
 
-#UI
-
-//ยังไม่ได้เลือก machine
-
--Home ไว้เลือก machine
-:: machine 
-
--Profile ไว้ edit employee profile
-:: emp 
-
-//เลือก machine แล้ว
-
--History ไว้แสดงผลข้อมูลย้อนหลัง
-:: work
-
--Employee ไว้เช็คชื่อผู้คุมเครื่องจักร
-:: work :: work-employee
+#Function&UI
+1.main
+    -Login&Logout ได้
+    -Home ไว้สำหรับเลือก machine
+    -Alarm ไว้ดู alarm โดยรวมของทุก machine
+    -Profile ไว้ edit profile
+2.machine
+    -Information ไว้ดูค่าต่างๆโดยรวม
+    -History ไว้แสดงผลข้อมูลย้อนหลังของ machine นั้นๆ
+    -Edit SV
+    -Employee ไว้ดูรายชื่อและข้อมูลสำหรับติดต่อ

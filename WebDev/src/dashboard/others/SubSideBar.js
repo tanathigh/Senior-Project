@@ -4,6 +4,7 @@ import List from "@material-ui/core/List";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import BarChartIcon from "@material-ui/icons/BarChart";
+import PeopleIcon from "@material-ui/icons/People";
 import EditIcon from "@material-ui/icons/Edit";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import InfoIcon from "@material-ui/icons/Info";
@@ -56,6 +57,12 @@ class SubBar extends Component {
               <EditIcon />
             </ListItemIcon>
             <ListItemText primary="Edit SV" />
+          </ListItem>
+          <ListItem button onClick={() => this.sendData("4")}>
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Employee" />
           </ListItem>
         </div>
       </List>

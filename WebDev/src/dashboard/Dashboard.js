@@ -14,7 +14,7 @@ import { default as SubBar } from "./others/SubSideBar";
 import { default as MainBar } from "./others/MainSideBar";
 import Alarm from "./mainItems/Alarm";
 import Home from "./mainItems/Home";
-import Employee from "./mainItems/Employee";
+import Employee from "./subItems/Employee";
 import Machine from "./subItems/Machine";
 import Chart from "./subItems/HistoryChart";
 import EditSV from "./subItems/EditSV";
@@ -233,7 +233,7 @@ class Dashboard extends Component {
               </Grid>
             )}
             {/* Employee */}
-            {this.state.page === "-2" && (
+            {this.state.page === "4" && (
               <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <Paper className={classes.paper}>
