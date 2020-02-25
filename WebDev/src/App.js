@@ -1,17 +1,17 @@
 import "./App.css";
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Home from "./containers/Monitor";
-import SignIn from "./containers/SignIn";
-import SignUp from "./containers/SignUp";
+import DashPage from "./pages/DashPage";
+import SignInPage from "./pages/SignInPage";
+import SignUpPage from "./pages/SignUpPage";
 
 class App extends Component {
   renderRouter() {
     return (
       <Switch>
-        <Route path="/signin" component={SignIn} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/" component={Home} />
+        <Route path="/signin" component={SignInPage} />
+        <Route path="/signup" component={SignUpPage} />
+        <Route path="/" component={DashPage} />
       </Switch>
     );
   }
