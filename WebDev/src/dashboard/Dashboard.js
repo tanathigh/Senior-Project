@@ -125,14 +125,20 @@ class Dashboard extends Component {
     super(props);
     this.fixedHeightPaper = clsx(this.props.paper, this.props.fixedHeight);
   }
+
   componentDidMount() {
-    axios.get("http://localhost:9000/").then(res => {
-      {
-        this.setState({
-          data: Object.values(res.data.recordsets[0][0])
-        });
-      }
-    });
+    axios
+      .get("http://localhost:9000/getData")
+      .then(res => {
+        {
+          this.setState({
+            data: Object.values(res.data.recordset[0])
+          });
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   render() {

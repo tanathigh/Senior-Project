@@ -3,10 +3,11 @@
 #Database 1 อันต่อ 1 บริษัท พนักงานหลายคน
 1.พนักงาน
 emp = [*emp-id,                         tinyint
-        emp-name,                       varchar
-        emp-mail,                       varchar
-        emp-tel,                        varchar
-        emp-password,                   varchar
+        emp-fname,                      nvarchar(30)
+        emp-lname,                      nvarchar(50)
+        emp-tel,                        nvarchar(20)
+        emp-email,                      nvarchar()
+        emp-password,                   nvarchar
         machine-id,                     tinyint //หมายเลขเครื่องที่มีสิทธิเข้าไปแก้ไขเครื่องได้
     ]
 2.เครื่องจักรหลายเครื่อง
@@ -14,7 +15,7 @@ machine = [*machine-id,                 tinyint
             machine-type,               tinyint
             machine-name,               varchar
             ]
-3.alarm เมื่อเกิดขัดข้องจากหลายเครื่องจักร
+3.alarm เมื่อเกิดขัดข้องจากหลายเครื่องจักร 
 alarm = [  *alarm-id,                   tinyint
             alarm-time,                 datetime
             alarm-tag,                  varchar
@@ -23,7 +24,15 @@ alarm = [  *alarm-id,                   tinyint
             alarm-desc,                 varchar
             machine-id                  tinyint
             ]
-4.มีค่าการทำงานของเครื่องจักรไว้ทำ History ทุกๆ 1 นาที
+4.มีค่าการทำงานของเครื่องจักรไว้ทำ History ทุกๆ 1 นาที - TrendWorX [แต่ละตัวจะเก็บเป็นrowหลายๆsampleและมีtimestampให้แล้ว]
+his = [*his-pv1,                        tinyint
+        his-pv2,                        tinyint
+        his-pv3,                        tinyint
+        his-sv1,                        tinyint
+        his-sv2,                        tinyint
+        his-sv3,                        tinyint
+        ]
+5.มีค่าการทำงานของเครื่องจักรณเวลานั้นๆ - UnifiedDataManager
 work = [*work-id,                       tinyint
         work-time,                      datetime
         work-pv1,                       tinyint

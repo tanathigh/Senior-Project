@@ -1,31 +1,92 @@
 const express = require("express");
 const http = require("http");
+const bodyParser = require("body-parser");
 const app = express();
+const sql = require("mssql");
+const config = {
+  user: "sa",
+  password: "1234",
+  server: "LENOVO\\SQLEXPRESS",
+  database: "MyProject"
+};
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+  );
   next();
 });
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
 
-app.get("/", function(req, res) {
-  var sql = require("mssql");
-  var config = {
-    user: "sa",
-    password: "1234",
-    server: "LENOVO\\SQLEXPRESS",
-    database: "MyProject"
-  };
+app.get("/getData", function(req, res) {
   sql.connect(config, function(err) {
     if (err) console.log(err);
     var request = new sql.Request();
-    request.query("select * from plc", function(err, recordset) {
+    request.query("select * from work", function(err, recordset) {
       if (err) console.log(err);
       res.send(recordset);
     });
   });
 });
 
-const server = http.createServer(app);
+app.post("/signIn", function(req, res) {
+  sql.connect(config, function(err) {
+    if (err) console.log(err);
+    var request = new sql.Request();
+    let queryString = new String(
+      "SELECT * FROM emp WHERE email = '" +
+        req.body.email +
+        "' AND password = '" +
+        req.body.password +
+        "'"
+    );
+    console.dir(queryString);
+    request.query(queryString, function(err, recordset) {
+      if (err || recordset.recordset.length < 1) {
+        res.sendStatus(404);
+      } else {
+        res.send(Object.values(recordset.recordset[0]));
+      }
+    });
+  });
+});
 
+app.post("/signUp", function(req, res) {
+  console.dir(req.body);
+  sql.connect(config, function(err) {
+    if (err) console.log(err);
+    var request = new sql.Request();
+    let queryString = new String(
+      "INSERT INTO emp (firstname, lastname, tel, email, password) VALUES ('" +
+        req.body.fname +
+        "','" +
+        req.body.lname +
+        "','" +
+        req.body.tel +
+        "','" +
+        req.body.email +
+        "','" +
+        req.body.password +
+        "')"
+    );
+    console.dir(queryString);
+    request.query(queryString, function(err, recordset) {
+      if (err) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(200);
+      }
+    });
+  });
+});
+
+const server = http.createServer(app);
 const PORT = process.env.PORT || 9000;
 server.listen(PORT, () => console.log(`listening on ${PORT}`));

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
 import { ListItem } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -9,12 +8,6 @@ import HumidityIcon from "@material-ui/icons/Opacity";
 import PressureIcon from "@material-ui/icons/Cloud";
 import Title from "../others/Title";
 import Button from "@material-ui/core/Button";
-
-const styles = theme => ({
-  seeMore: {
-    marginTop: theme.spacing(3)
-  }
-});
 
 class SV extends Component {
   constructor(props) {
@@ -65,4 +58,4 @@ class SV extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(SV);
+export default SV;

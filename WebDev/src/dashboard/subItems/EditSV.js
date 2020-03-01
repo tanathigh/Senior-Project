@@ -14,10 +14,6 @@ function createData(id, name, value) {
 }
 
 class EditSV extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const rows = [
       createData(0, "Temperature", this.props.data[7]),
