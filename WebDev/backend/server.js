@@ -87,6 +87,31 @@ app.post("/signUp", function(req, res) {
   });
 });
 
+app.post("/updateSV", function(req, res) {
+  console.dir(req.body);
+  sql.connect(config, function(err) {
+    if (err) console.log(err);
+    var request = new sql.Request();
+    let queryString = new String(
+      "UPDATE work SET sv1 = '" +
+        req.body.sv1 +
+        "', sv2 = '" +
+        req.body.sv2 +
+        "', sv3 = '" +
+        req.body.sv3 +
+        "'WHERE id = 1"
+    );
+    console.dir(queryString);
+    request.query(queryString, function(err, recordset) {
+      if (err) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(200);
+      }
+    });
+  });
+});
+
 const server = http.createServer(app);
 const PORT = process.env.PORT || 9000;
 server.listen(PORT, () => console.log(`listening on ${PORT}`));

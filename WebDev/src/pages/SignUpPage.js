@@ -9,6 +9,7 @@ import LockOutlinedIcon from "../../node_modules/@material-ui/icons/LockOutlined
 import Typography from "../../node_modules/@material-ui/core/Typography";
 import { withStyles } from "../../node_modules/@material-ui/core/styles";
 import Container from "../../node_modules/@material-ui/core/Container";
+import Alert from "../../node_modules/@material-ui/lab/Alert";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import axios from "axios";
 
@@ -56,7 +57,8 @@ class SignUp extends Component {
         email: "",
         password: "",
         repeatPassword: ""
-      }
+      },
+      status: null
     };
   }
 
@@ -81,7 +83,7 @@ class SignUp extends Component {
 
   handleSubmit = () => {
     var obj = this.state.user;
-    console.log(obj);
+    var self = this;
     axios
       .post("http://localhost:9000/signUp/", obj, {
         headers: {
@@ -89,10 +91,12 @@ class SignUp extends Component {
         }
       })
       .then(function(res) {
-        // if (res.data != null) {
-        // } else {
-        //   self.props.history.push({ pathname: "/signin", state: self.state });
-        // }
+        console.log(res.status);
+        if (res.status == "200") {
+          self.setState({ status: true });
+        } else {
+          self.setState({ status: false });
+        }
       })
       .catch(function(error) {
         console.log(error);
@@ -219,10 +223,15 @@ class SignUp extends Component {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={this.signup}
             >
               Sign Up
             </Button>
+            {this.state.status === true && (
+              <Alert severity="success">Signup Successful</Alert>
+            )}
+            {this.state.status === false && (
+              <Alert severity="warning">Signup failed</Alert>
+            )}
             <Grid container justify="flex-end">
               <Grid item>
                 <Link href="/signin" variant="body2">
