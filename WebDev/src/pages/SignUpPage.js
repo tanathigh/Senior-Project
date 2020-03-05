@@ -92,7 +92,7 @@ class SignUp extends Component {
       })
       .then(function(res) {
         console.log(res.status);
-        if (res.status == "200") {
+        if (res.status === "200") {
           self.setState({ status: true });
         } else {
           self.setState({ status: false });

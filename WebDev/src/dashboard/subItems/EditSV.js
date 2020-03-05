@@ -11,10 +11,6 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import axios from "axios";
 import Alert from "@material-ui/lab/Alert";
 
-function createData(id, name, value) {
-  return { id, name, value };
-}
-
 class EditSV extends Component {
   constructor(props) {
     super(props);
@@ -45,7 +41,7 @@ class EditSV extends Component {
       })
       .then(function(res) {
         console.log(res.status);
-        if (res.status == "200") {
+        if (res.status === "200") {
           self.setState({ status: true });
         } else {
           self.setState({ status: false });

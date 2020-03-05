@@ -36,6 +36,26 @@ app.get("/getData", function(req, res) {
   });
 });
 
+app.get("/getHistory", function(req, res) {
+  sql.connect(config, function(err) {
+    if (err) console.log(err);
+    var request = new sql.Request();
+    let queryString = "SELECT Signal_Index,";
+    queryString += "Sample_TDate_1, Sample_Value_1";
+    var i;
+    for (i = 2; i < 30; i++) {
+      queryString += ", Sample_TDate_" + i;
+      queryString += ", Sample_Value_" + i;
+    }
+    queryString += " FROM LG";
+    console.dir(queryString);
+    request.query(queryString, function(err, recordset) {
+      if (err) console.log(err);
+      res.send(recordset);
+    });
+  });
+});
+
 app.post("/signIn", function(req, res) {
   sql.connect(config, function(err) {
     if (err) console.log(err);
@@ -47,7 +67,6 @@ app.post("/signIn", function(req, res) {
         req.body.password +
         "'"
     );
-    console.dir(queryString);
     request.query(queryString, function(err, recordset) {
       if (err || recordset.recordset.length < 1) {
         res.sendStatus(404);
@@ -59,7 +78,6 @@ app.post("/signIn", function(req, res) {
 });
 
 app.post("/signUp", function(req, res) {
-  console.dir(req.body);
   sql.connect(config, function(err) {
     if (err) console.log(err);
     var request = new sql.Request();
@@ -76,7 +94,6 @@ app.post("/signUp", function(req, res) {
         req.body.password +
         "')"
     );
-    console.dir(queryString);
     request.query(queryString, function(err, recordset) {
       if (err) {
         res.sendStatus(404);
@@ -88,7 +105,6 @@ app.post("/signUp", function(req, res) {
 });
 
 app.post("/updateSV", function(req, res) {
-  console.dir(req.body);
   sql.connect(config, function(err) {
     if (err) console.log(err);
     var request = new sql.Request();
@@ -101,7 +117,6 @@ app.post("/updateSV", function(req, res) {
         req.body.sv3 +
         "'WHERE id = 1"
     );
-    console.dir(queryString);
     request.query(queryString, function(err, recordset) {
       if (err) {
         res.sendStatus(404);

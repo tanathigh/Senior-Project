@@ -118,28 +118,47 @@ class Dashboard extends Component {
   state = { data: "", page: "0" };
 
   callbackFunction = childData => {
-    this.setState({ page: childData });
+    this.setState({ page: childData }, () => this.setPage());
   };
 
   constructor(props) {
     super(props);
     this.fixedHeightPaper = clsx(this.props.paper, this.props.fixedHeight);
+    this.setPage = this.setPage.bind(this);
   }
 
-  componentDidMount() {
-    axios
-      .get("http://localhost:9000/getData")
-      .then(res => {
-        {
-          this.setState({
-            data: Object.values(res.data.recordset[0])
-          });
-        }
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }
+  setPage = () => {
+    if (this.state.page === "3") {
+      axios
+        .get("http://localhost:9000/getData")
+        .then(res => {
+          {
+            this.setState({
+              data: Object.values(res.data.recordset[0])
+            });
+            //console.log(res);
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+    if (this.state.page === "2") {
+      axios
+        .get("http://localhost:9000/getHistory")
+        .then(res => {
+          {
+            // this.setState({
+            //   data: Object.values(res.data.recordset[0])
+            // });
+            console.log(res);
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+  };
 
   render() {
     const { classes } = this.props;
