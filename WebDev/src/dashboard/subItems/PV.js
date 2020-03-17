@@ -7,8 +7,10 @@ import TemperatureIcon from "@material-ui/icons/AcUnit";
 import HumidityIcon from "@material-ui/icons/Opacity";
 import PressureIcon from "@material-ui/icons/Cloud";
 import Title from "../others/Title";
+import ProgressBar from 'react-bootstrap/ProgressBar'
 
 // Generate Order Data
+
 
 const styles = theme => ({
   seeMore: {
@@ -35,6 +37,10 @@ class PV extends Component {
           <ListItemText primary="Temperature (Celsius)" />
           <ListItemText secondary={this.props.data[4]} align="right" />
         </ListItem>
+        <ProgressBar animated variant="success" now={40} />
+        <ProgressBar animated variant="info" now={20} />
+        <ProgressBar animated variant="warning" now={60} />
+        <ProgressBar animated variant="danger" now={80} />
         <ListItem>
           <ListItemIcon>
             <HumidityIcon />

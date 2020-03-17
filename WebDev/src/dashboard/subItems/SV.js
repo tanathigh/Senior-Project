@@ -42,17 +42,6 @@ class SV extends Component {
           <ListItemText primary="Pressure (Pa)" />
           <ListItemText secondary={this.props.data[9]} align="right" />
         </ListItem>
-        <div align="center">
-          <Button
-            size="small"
-            variant="contained"
-            color="default"
-            startIcon={<EditIcon />}
-            onClick={() => this.sendData("1")}
-          >
-            Edit
-          </Button>
-        </div>
       </React.Fragment>
     );
   }

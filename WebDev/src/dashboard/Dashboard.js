@@ -25,7 +25,7 @@ import axios from "axios";
 function Footer() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Contract Line @"}
+      {"Contact Line @"}
       <Link color="inherit" href="https://material-ui.com/">
         Tanat Hophaisarn
       </Link>
@@ -224,7 +224,6 @@ class Dashboard extends Component {
                 <Grid item xs={12} md={6} lg={6}>
                   <Paper className={classes.paper}>
                     <PV data={this.state.data} />
-                    <br />
                   </Paper>
                 </Grid>
                 <Grid item xs={12}>

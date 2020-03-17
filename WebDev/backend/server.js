@@ -48,7 +48,7 @@ app.get("/getHistory", function(req, res) {
       queryString += ", Sample_Value_" + i;
     }
     queryString += " FROM LG";
-    console.dir(queryString);
+    //console.dir(queryString);
     request.query(queryString, function(err, recordset) {
       if (err) console.log(err);
       res.send(recordset);
