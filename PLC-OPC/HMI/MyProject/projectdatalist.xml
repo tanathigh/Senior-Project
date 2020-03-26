@@ -84,7 +84,7 @@
       <ucReserve>0</ucReserve>
       <ucFileType>1</ucFileType>
     </D_Projectdata>
-    <D_Projectdata diffgr:id="D_Projectdata8" msdata:rowOrder="6" diffgr:hasChanges="inserted">
+    <D_Projectdata diffgr:id="D_Projectdata7" msdata:rowOrder="6" diffgr:hasChanges="inserted">
       <iID>5</iID>
       <szName>MyProject.pji</szName>
       <dtCreateDate>2020-03-17T20:25:14.7577429+07:00</dtCreateDate>
@@ -98,7 +98,7 @@
       <ucReserve>0</ucReserve>
       <ucFileType>4</ucFileType>
     </D_Projectdata>
-    <D_DBVersion diffgr:id="D_DBVersion9" msdata:rowOrder="0" diffgr:hasChanges="inserted">
+    <D_DBVersion diffgr:id="D_DBVersion2" msdata:rowOrder="0" diffgr:hasChanges="inserted">
       <iSupportVersion>1</iSupportVersion>
       <iCreateVersion>1</iCreateVersion>
     </D_DBVersion>
