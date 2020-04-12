@@ -1,3 +1,4 @@
+
 # PLC 
 
 # Memory [D]
@@ -7,11 +8,12 @@
 - D150		(CH1)	D250		(CH2)				[MV out	]
 - D8015 	D8014	D8013 	represent to hr/min/sec	{Time	}
 
-# Input Relay [X]
-- X10 		represent to 	Comment test
+# Comment
+- X10 [off]
+- M555 [off]
 
 # Output Relay [Y]		[Y0,Y1,Y2,Y3 can used PWM]
-- Y0=Damp-on	Y1=Damp-off 	Y2=Blower 	Y4=Heater
+- Y0=Damp-on	Y1=Damp-off 	Y2=Blower 	Y3=Heater
 
 # Auxiliary relay [M]
 - M8000 represent to +
@@ -19,7 +21,10 @@
 - M8012 represent to 100ms
 - M10 represent to total error
 - M20 represent to A2D value error
-- M100(+2) are used for CMP of CH1=Y0,Y1
+- M100(+2) are used for CMP of CH1 Pressure PV>SV=Y0[on] PV<SV=Y1[off]
+
+- M0 เปิดการทำงานของเครื่อง ซึ่งจะเปิดการทำงานของ Y2 (พัดลม+Blower)
+
 
 #PID Variables CH1
 - D100[+28] : Sampling time = 1000 (1 sec)
