@@ -24,6 +24,7 @@
 - M100(+2) are used for CMP of CH1 Pressure PV>SV=Y0[on] PV<SV=Y1[off]
 
 - M0 เปิดการทำงานของเครื่อง ซึ่งจะเปิดการทำงานของ Y2 (พัดลม+Blower)
+- M1 ทำการ set ค่า SV ใน PLC ตาม SV input
 
 
 #PID Variables CH1
