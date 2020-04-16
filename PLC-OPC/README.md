@@ -2,15 +2,16 @@
 # PLC 
 
 # Memory [D]
-- D1=Pressure	(CH1) 	D2=Temp		(CH2) 	D3=Humid	(CH3) 	[PV input	]
-- D10=Pressure	(CH1)	D20=Temp	(CH2)				[SV set	]
+- D1=Pressure	(CH1) 	D2=Temp		(CH2) 	D3=Humid	(CH3) 	[PV PLC	]
+- D11=Pressure	(CH1) 	D12=Temp	(CH2) 	D13=Humid	(CH3) 	[PV OPC	]
+- D10=Pressure	(CH1)	D20=Temp	(CH2)				[SV PLC	]
+- D15=Pressure	(CH1)	D25=Temp	(CH2)				[SV OPC	]
 - D100(+28)	(CH1) 	D200(+28)	(CH2)				[PID Para	]
 - D150		(CH1)	D250		(CH2)				[MV out	]
 - D8015 	D8014	D8013 	represent to hr/min/sec	{Time	}
 
 # Comment
 - X10 [off]
-- M555 [off]
 
 # Output Relay [Y]		[Y0,Y1,Y2,Y3 can used PWM]
 - Y0=Damp-on	Y1=Damp-off 	Y2=Blower 	Y3=Heater
@@ -33,25 +34,23 @@
 - D123: 0
 - 
 
+Pressure 			0-15 mbar
+D11 = (D1*16)/2000
+0	0v	0.3mbar
+127	0.635v	
+2000	10v	16mbar
+
 Temp 			input 15-50 C
-0-1v  = -30c-70c
-อุณหภูมิ = (อนาล็อค/2) - 30
+D22 = (D2/2) - 30
 0	0v 	-30c
 130	0.65v	 35c
 200	1v 	 70c
 
 Humidity
-0-1v = 0%rh-100%rh
-ความชื้น = (อนาล็อค/2)
+D33 = (D3/2)
 0	0v	0%
 100	0.5v	50%
 200	1v	100%
-
-Pressure 			0-15 mbar
-ความดัน = (อนาล็อค*16)/2000
-0	0v	0.3mbar
-127	0.635v	
-2000	10v	16mbar
 
 PLC input 0-10V คือ 0-2000
 4DA output +10V=+32000
@@ -63,3 +62,5 @@ x/640
 
 100=x/16*2000
 2=450
+
+รับส่งข้อมูลกับ SCADA ข้อมูลบน OPC ต้องเป็นเลขแปลงแล้วทั้งหมด แปลงใน ladder ก่อนส่งไป
