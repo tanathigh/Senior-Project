@@ -4,3 +4,21 @@
 3.Data Mining 		- ดึงข้อมูลจาก db server ของ mssql เข้ามาใน SCADA Server
 4.TrendworX32		- ทำ DB Logging ลงใน database ในตาราง dbo.lg
 5.PersistentTrend		- เซฟ DB Logging เป็นไฟล์ .csv สำหรับ History Chart ในโปรแกรม SCADA
+
+#Featue
+1.Realtime Monitoring
+2.Set SV
+3.PV Graph
+
+ส่งงานที่ทำให้คนนอกดูรู้เรื่อง
+
+#report aim = คนที่ไม่ได้อยู่ใน field มาอ่านแล้วยังเข้าใจว่าทำอะไร, เป็น Doc ที่คนอ่านแล้วมาทำต่อได้
+intro
+realated work
+implementation
+timeline
+budget
+evaluation & difficulties
+conclusion - improvement future work
+
+#vdo presentation = ทำให้คนข้างนอกดูแล้วเข้าใจ มีสคริป
