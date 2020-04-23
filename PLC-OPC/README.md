@@ -22,6 +22,9 @@
 - M8012 represent to 100ms
 - M10 represent to total error
 - M20 represent to A2D value error
+- M30 Damper+
+- M31 Damper-
+- M32 Pump
 - M100(+2) are used for CMP of CH1 Pressure 		PV>SV=Y0[on]	PV<SV=Y1[off]
 - M110(+2) are used for CMP of CH2 Temperature 	Control MV2
 - M120(+2) are used for CMP of CH2 Temperature 	Compare SV&IV
