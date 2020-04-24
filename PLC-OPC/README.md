@@ -13,7 +13,7 @@
 - D8015 	D8014	D8013 	represent to hr/min/sec				[Time	]
 
 # Output Relay [Y]		[Y0,Y1,Y2,Y3 can used PWM]	[Coil เขียนได้ครั้งเดียวใน ladder]
-- Y0=Damp-on	Y1=Damp-off 	Y2=Pump		Y3=Heater	Y4=Blower 	Y5=Fan+Light	Y6=Alarm
+- Y0=Damp-on	Y1=Damp-off 	Y2=Pump		Y3=Heater	Y4=Blower 	Y5=Fan+Light	Y6=Alarm light
 
 # Auxiliary relay [M]
 - M8000 represent to +
@@ -72,15 +72,14 @@ Hz = D150/640
 
 Alarm เมื่อ
 Pressure เซนเซอร์ Pressure เสีย
--MORE	>SV+3 Pa		นานเกิน 1 นาที			Alarm1 Blower ทำงานเกิน
--LESS	<SV-3  Pa		นานเกิน 1 นาที			Alarm2 Blower ไม่ทำงาน
+-MORE	>SV+3 Pa		นานเกิน 1 นาที			->Alarm1 Blower ทำงานเกิน
+-LESS	<SV-3  Pa		นานเกิน 1 นาที			->Alarm2 Blower ไม่ทำงาน
 
 Temperature เซนเซอร์ Temp เสีย
--MORE	>SV+3 C		นานเกิน 10 วิ	Heater ติด		Alarm3 Heater ทำงานเกิน
-			นานเกิน 10 วิ	Pump ไม่ทำงาน	Alarm4 Pump เสีย
--LESS	<SV-3  C		นานเกิน 10 วิ	Heater ไม่ติด	Alarm5 Heater เสีย
-			นานเกิน 10 วิ	Pump ทำงาน	Alarm6 Pump ทำงานเกิน
+-MORE	PV>SV+3 C	นานเกิน 30 วิ	Pump ทำงาน	->Alarm4 Pump เสีย
+-LESS	PV<SV-3  C	นานเกิน 30 วิ	Heater ติด		->Alarm5 Heater เสีย
 เกิด Alarm เครื่องปิดทันที + รอการกดปุ่มรับทราบ
+//เทสโดยปรับเวลา alarm ให้สั้นๆ
 
 -พัดลมไม่สามารถดึงความเย็นออกมาได้ดีพอ
 -ไม่ได้ใช้ AHU ในการทำความเย็นมากๆได้
