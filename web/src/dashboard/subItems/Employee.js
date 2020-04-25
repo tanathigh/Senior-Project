@@ -14,13 +14,13 @@ function createData(id, name, responsibility, tel) {
 
 const rows = [
   createData(0, "Nathan", "Engineer", "081-123-4567"),
-  createData(1, "Lisa", "Engineer", "090-345-6789")
+  createData(1, "Lisa", "Engineer", "090-345-6789"),
 ];
 
-const styles = theme => ({
+const styles = (theme) => ({
   seeMore: {
-    marginTop: theme.spacing(3)
-  }
+    marginTop: theme.spacing(3),
+  },
 });
 
 class Employee extends Component {
@@ -34,7 +34,7 @@ class Employee extends Component {
   render() {
     return (
       <React.Fragment>
-        <Title>Employee</Title>
+        <Title>EMPLOYEE</Title>
         <Table size="small">
           <TableHead>
             <TableRow style={{ backgroundColor: "#343a40" }}>
@@ -46,7 +46,7 @@ class Employee extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
+            {rows.map((row) => (
               <TableRow key={row.id}>
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.responsibility}</TableCell>

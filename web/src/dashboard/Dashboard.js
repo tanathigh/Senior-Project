@@ -15,6 +15,7 @@ import { default as MainBar } from "./others/MainSideBar";
 import Home from "./mainItems/Home";
 import Employee from "./subItems/Employee";
 import Power from "./subItems/Power";
+import AlarmBit from "./subItems/AlarmBit";
 import Alarm from "./subItems/Alarm";
 import PVChart from "./subItems/PVChart";
 import SV from "./subItems/SV";
@@ -142,8 +143,6 @@ class Dashboard extends Component {
         .catch((error) => {
           console.error(error);
         });
-    }
-    if (this.state.page === "2") {
       axios
         .get("http://localhost:9000/getHistory")
         .then((res) => {
@@ -158,6 +157,21 @@ class Dashboard extends Component {
           console.error(error);
         });
     }
+    // if (this.state.page === "2") {
+    //   axios
+    //     .get("http://localhost:9000/getHistory")
+    //     .then((res) => {
+    //       {
+    //         this.setState({
+    //           chart: Object.values(res.data.recordset),
+    //         });
+    //         //console.log(Object.values(res.data.recordset));
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       console.error(error);
+    //     });
+    // }
   };
 
   render() {
@@ -222,7 +236,7 @@ class Dashboard extends Component {
                 </Grid>
                 <Grid item xs={12} md={3} lg={3}>
                   <Paper className={classes.paper}>
-                    <Alarm data={this.state.data} />
+                    <AlarmBit data={this.state.data} />
                   </Paper>
                 </Grid>
                 <Grid item xs={12} md={6} lg={6}>
@@ -236,7 +250,7 @@ class Dashboard extends Component {
             {this.state.page === "2" && (
               <Grid container spacing={3}>
                 <Grid item xs={12}>
-                  <Paper className={this.fixedHeightPaper}>
+                  <Paper className={classes.paper}>
                     <PVChart chart={this.state.chart} />
                   </Paper>
                 </Grid>

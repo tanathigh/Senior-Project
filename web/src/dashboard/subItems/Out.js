@@ -36,7 +36,7 @@ class OUT extends Component {
         <Table size="small">
           <TableHead>
             <TableRow style={{ backgroundColor: "#343a40" }}>
-              <TableCell style={{ color: "white" }}>Device</TableCell>
+              <TableCell style={{ color: "white" }}>Output Device</TableCell>
               <TableCell style={{ color: "white" }} align="right">
                 Status
               </TableCell>

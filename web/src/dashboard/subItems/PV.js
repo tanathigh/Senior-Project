@@ -32,11 +32,11 @@ class PV extends Component {
             <PressureIcon />
           </ListItemIcon>
           <ListItemText primary="Pressure" />
-          <ListItemText primary="0-30" align="right"/>
           <ListItemText
             secondary={(this.props.data[4] / 20).toFixed(1)}
             align="right"
           />
+          <ListItemText primary="[0-30]" align="right" />
         </ListItem>
         <ProgressBar animated variant="warning" now={this.props.data[4] / 6} />
         <ListItem>
@@ -44,11 +44,11 @@ class PV extends Component {
             <TemperatureIcon />
           </ListItemIcon>
           <ListItemText primary="Temperature" />
-          <ListItemText primary="15-40" align="right"/>
           <ListItemText
             secondary={(this.props.data[6] / 2 - 30).toFixed(1)}
             align="right"
           />
+          <ListItemText primary="[15-40]" align="right" />
         </ListItem>
         <ProgressBar
           animated
@@ -60,11 +60,11 @@ class PV extends Component {
             <HumidityIcon />
           </ListItemIcon>
           <ListItemText primary="Humidity" />
-          <ListItemText primary="0-100" align="right"/>
           <ListItemText
             secondary={(this.props.data[7] / 2).toFixed(1)}
             align="right"
           />
+          <ListItemText primary="[0-100]" align="right" />
         </ListItem>
         <ProgressBar animated variant="info" now={this.props.data[7] / 2} />
       </React.Fragment>
