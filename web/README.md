@@ -32,7 +32,7 @@ his = [*his-pv1,                        tinyint
         his-sv2,                        tinyint
         his-sv3,                        tinyint
         ]
-5.มีค่าการทำงานของเครื่องจักรณเวลานั้นๆ - UnifiedDataManager
+5.มีค่าการทำงานของเครื่องจักรณเวลานั้นๆ - ใช้ UnifiedDataManager ทำ
 work = [*work-id,                       tinyint
         work-time,                      datetime
         work-pv1,                       tinyint

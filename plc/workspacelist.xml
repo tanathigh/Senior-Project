@@ -8,7 +8,12 @@
     <D_Workspace diffgr:id="D_Workspace2" msdata:rowOrder="1" diffgr:hasChanges="inserted">
       <iID>2</iID>
       <szName>HMI</szName>
-      <dtCreateDate>2020-03-17T20:25:14.3567574+07:00</dtCreateDate>
+      <dtCreateDate>2020-04-26T01:12:59.9682632+07:00</dtCreateDate>
+    </D_Workspace>
+    <D_Workspace diffgr:id="D_Workspace3" msdata:rowOrder="2" diffgr:hasChanges="inserted">
+      <iID>3</iID>
+      <szName>plc-hmi</szName>
+      <dtCreateDate>2020-04-26T01:13:49.3276158+07:00</dtCreateDate>
     </D_Workspace>
     <D_DBVersion diffgr:id="D_DBVersion2" msdata:rowOrder="0" diffgr:hasChanges="inserted">
       <iSupportVersion>1</iSupportVersion>

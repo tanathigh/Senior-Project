@@ -5,10 +5,11 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import PeopleIcon from "@material-ui/icons/People";
-import EditIcon from "@material-ui/icons/Edit";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import InfoIcon from "@material-ui/icons/Info";
 import Divider from "@material-ui/core/Divider";
+import Badge from "@material-ui/core/Badge";
+import ReportIcon from "@material-ui/icons/Report";
 
 const StyledListItem = styled(ListItem)({
   backgroundColor: "#343a40"
@@ -40,7 +41,7 @@ class SubBar extends Component {
             />
           </StyledListItem>
           <Divider />
-          <ListItem button onClick={() => this.sendData("3")}>
+          <ListItem button onClick={() => this.sendData("1")}>
             <ListItemIcon>
               <InfoIcon />
             </ListItemIcon>
@@ -50,19 +51,21 @@ class SubBar extends Component {
             <ListItemIcon>
               <BarChartIcon />
             </ListItemIcon>
-            <ListItemText primary="History Chart" />
+            <ListItemText primary="PV Chart" />
           </ListItem>
-          <ListItem button onClick={() => this.sendData("1")}>
-            <ListItemIcon>
-              <EditIcon />
-            </ListItemIcon>
-            <ListItemText primary="Edit SV" />
-          </ListItem>
-          <ListItem button onClick={() => this.sendData("4")}>
+          <ListItem button onClick={() => this.sendData("3")}>
             <ListItemIcon>
               <PeopleIcon />
             </ListItemIcon>
             <ListItemText primary="Employee" />
+          </ListItem>
+          <ListItem button onClick={() => this.sendData("4")}>
+            <ListItemIcon>
+              <Badge badgeContent={4} color="primary">
+                <ReportIcon />
+              </Badge>
+            </ListItemIcon>
+            <ListItemText primary="Alarm Report" />
           </ListItem>
         </div>
       </List>

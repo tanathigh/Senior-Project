@@ -4,8 +4,7 @@ import List from "@material-ui/core/List";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
-import Badge from "@material-ui/core/Badge";
-import ReportIcon from "@material-ui/icons/Report";
+import SettingsIcon from '@material-ui/icons/Settings';
 
 class MainBar extends Component {
   constructor(props) {
@@ -27,11 +26,9 @@ class MainBar extends Component {
           </ListItem>
           <ListItem button onClick={() => this.sendData("-1")}>
             <ListItemIcon>
-              <Badge badgeContent={4} color="primary">
-                <ReportIcon />
-              </Badge>
+              <SettingsIcon />
             </ListItemIcon>
-            <ListItemText primary="Alarm Report" />
+            <ListItemText primary="Setting" />
           </ListItem>
         </div>
       </List>

@@ -12,14 +12,14 @@ import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
 import { default as SubBar } from "./others/SubSideBar";
 import { default as MainBar } from "./others/MainSideBar";
-import Alarm from "./mainItems/Alarm";
 import Home from "./mainItems/Home";
 import Employee from "./subItems/Employee";
-import Machine from "./subItems/Machine";
-import Chart from "./subItems/HistoryChart";
-import EditSV from "./subItems/EditSV";
+import Power from "./subItems/Power";
+import Alarm from "./subItems/Alarm";
+import PVChart from "./subItems/PVChart";
 import SV from "./subItems/SV";
 import PV from "./subItems/PV";
+import Out from "./subItems/Out";
 import axios from "axios";
 
 function Footer() {
@@ -35,43 +35,43 @@ function Footer() {
 
 const drawerWidth = 240;
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
-    display: "flex"
+    display: "flex",
   },
   toolbar: {
-    paddingRight: 24 // keep right padding when drawer closed
+    paddingRight: 24, // keep right padding when drawer closed
   },
   toolbarIcon: {
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
     padding: "0 8px",
-    ...theme.mixins.toolbar
+    ...theme.mixins.toolbar,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
+      duration: theme.transitions.duration.leavingScreen,
+    }),
   },
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   menuButton: {
-    marginRight: 36
+    marginRight: 36,
   },
   menuButtonHidden: {
-    display: "none"
+    display: "none",
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   drawerPaper: {
     position: "relative",
@@ -79,45 +79,45 @@ const styles = theme => ({
     width: drawerWidth,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   drawerPaperClose: {
     overflowX: "hidden",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
+      duration: theme.transitions.duration.leavingScreen,
     }),
     width: theme.spacing(7),
     [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9)
-    }
+      width: theme.spacing(9),
+    },
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     height: "100vh",
-    overflow: "auto"
+    overflow: "auto",
   },
   container: {
     paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4)
+    paddingBottom: theme.spacing(4),
   },
   paper: {
     padding: theme.spacing(2),
     display: "flex",
     overflow: "auto",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   fixedHeight: {
-    height: 240
-  }
+    height: 240,
+  },
 });
 
 class Dashboard extends Component {
-  state = { data: "", page: "0" };
+  state = { data: "", chart: "", page: "0" };
 
-  callbackFunction = childData => {
+  callbackFunction = (childData) => {
     this.setState({ page: childData }, () => this.setPage());
   };
 
@@ -128,33 +128,33 @@ class Dashboard extends Component {
   }
 
   setPage = () => {
-    if (this.state.page === "3") {
+    if (this.state.page === "1") {
       axios
         .get("http://localhost:9000/getData")
-        .then(res => {
+        .then((res) => {
           {
             this.setState({
-              data: Object.values(res.data.recordset[0])
+              data: Object.values(res.data.recordset[0]),
             });
-            //console.log(res);
+            console.log(Object.values(res.data.recordset[0]));
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
         });
     }
     if (this.state.page === "2") {
       axios
         .get("http://localhost:9000/getHistory")
-        .then(res => {
+        .then((res) => {
           {
-            // this.setState({
-            //   data: Object.values(res.data.recordset[0])
-            // });
-            console.log(res);
+            this.setState({
+              chart: Object.values(res.data.recordset),
+            });
+            //console.log(Object.values(res.data.recordset));
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
         });
     }
@@ -168,7 +168,7 @@ class Dashboard extends Component {
         <Drawer
           variant="permanent"
           classes={{
-            paper: clsx(classes.drawerPaper)
+            paper: clsx(classes.drawerPaper),
           }}
         >
           <Divider />
@@ -189,50 +189,6 @@ class Dashboard extends Component {
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
             {/* <Grid item xs={12} md={8} lg={9}> */}
-            {/* EditSV */}
-            {this.state.page === "1" && (
-              <Grid container spacing={3}>
-                <Grid item xs={12}>
-                  <Paper className={classes.paper}>
-                    <EditSV data={this.state.data} />
-                  </Paper>
-                </Grid>
-              </Grid>
-            )}
-            {/* History Chart */}
-            {this.state.page === "2" && (
-              <Grid container spacing={3}>
-                <Grid item xs={12}>
-                  <Paper className={this.fixedHeightPaper}>
-                    <Chart />
-                  </Paper>
-                </Grid>
-              </Grid>
-            )}
-            {/* Machine */}
-            {this.state.page === "3" && (
-              <Grid container spacing={3}>
-                <Grid item xs={12} md={6} lg={6}>
-                  <Paper className={classes.paper}>
-                    <SV
-                      page={this.state.page}
-                      data={this.state.data}
-                      parentCallback={this.callbackFunction}
-                    />
-                  </Paper>
-                </Grid>
-                <Grid item xs={12} md={6} lg={6}>
-                  <Paper className={classes.paper}>
-                    <PV data={this.state.data} />
-                  </Paper>
-                </Grid>
-                <Grid item xs={12}>
-                  <Paper className={classes.paper}>
-                    <Machine />
-                  </Paper>
-                </Grid>
-              </Grid>
-            )}
             {/* Home */}
             {this.state.page === "0" && (
               <Grid container spacing={3}>
@@ -246,22 +202,62 @@ class Dashboard extends Component {
                 </Grid>
               </Grid>
             )}
-            {/* Recent Alarms */}
-            {this.state.page === "-1" && (
+            {/* Machine Information*/}
+            {this.state.page === "1" && (
+              <Grid container spacing={3}>
+                <Grid item xs={12} md={12} lg={12}>
+                  <Paper className={classes.paper}>
+                    <Power data={this.state.data} />
+                  </Paper>
+                </Grid>
+                <Grid item xs={12} md={6} lg={6}>
+                  <Paper className={classes.paper}>
+                    <PV data={this.state.data} />
+                  </Paper>
+                </Grid>
+                <Grid item xs={12} md={3} lg={3}>
+                  <Paper className={classes.paper}>
+                    <SV data={this.state.data} />
+                  </Paper>
+                </Grid>
+                <Grid item xs={12} md={3} lg={3}>
+                  <Paper className={classes.paper}>
+                    <Alarm data={this.state.data} />
+                  </Paper>
+                </Grid>
+                <Grid item xs={12} md={6} lg={6}>
+                  <Paper className={classes.paper}>
+                    <Out data={this.state.data} />
+                  </Paper>
+                </Grid>
+              </Grid>
+            )}
+            {/* PV Graph Chart */}
+            {this.state.page === "2" && (
               <Grid container spacing={3}>
                 <Grid item xs={12}>
-                  <Paper className={classes.paper}>
-                    <Alarm />
+                  <Paper className={this.fixedHeightPaper}>
+                    <PVChart chart={this.state.chart} />
                   </Paper>
                 </Grid>
               </Grid>
             )}
             {/* Employee */}
-            {this.state.page === "4" && (
+            {this.state.page === "3" && (
               <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <Paper className={classes.paper}>
                     <Employee />
+                  </Paper>
+                </Grid>
+              </Grid>
+            )}
+            {/* Recent Alarms */}
+            {this.state.page === "4" && (
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <Paper className={classes.paper}>
+                    <Alarm />
                   </Paper>
                 </Grid>
               </Grid>

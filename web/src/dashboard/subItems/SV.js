@@ -3,11 +3,9 @@ import { ListItem } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import TemperatureIcon from "@material-ui/icons/AcUnit";
-import EditIcon from "@material-ui/icons/Edit";
-import HumidityIcon from "@material-ui/icons/Opacity";
 import PressureIcon from "@material-ui/icons/Cloud";
+import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import Title from "../others/Title";
-import Button from "@material-ui/core/Button";
 
 class SV extends Component {
   constructor(props) {
@@ -23,24 +21,36 @@ class SV extends Component {
         <Title>SV</Title>
         <ListItem>
           <ListItemIcon>
-            <TemperatureIcon />
-          </ListItemIcon>
-          <ListItemText primary="Temperature (Celsius)" />
-          <ListItemText secondary={this.props.data[7]} align="right" />
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <HumidityIcon />
-          </ListItemIcon>
-          <ListItemText primary="Humidity (%)" />
-          <ListItemText secondary={this.props.data[8]} align="right" />
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
             <PressureIcon />
           </ListItemIcon>
-          <ListItemText primary="Pressure (Pa)" />
-          <ListItemText secondary={this.props.data[9]} align="right" />
+          <ListItemText
+            secondary={(this.props.data[13] / 20).toFixed(1)}
+            align="center"
+          />
+          <ListItemText primary="Pa" align="right" />
+        </ListItem>
+        <br />
+        <ListItem>
+          <ListItemIcon>
+            <TemperatureIcon />
+          </ListItemIcon>
+          <ListItemText
+            secondary={(this.props.data[14] / 2 - 30).toFixed(1)}
+            align="center"
+          />
+          <ListItemText primary="°C" align="right" />
+        </ListItem>
+        <br />
+        <Title>IV</Title>
+        <ListItem>
+          <ListItemIcon>
+            <TemperatureIcon />
+          </ListItemIcon>
+          <ListItemText
+            secondary={(this.props.data[3] / 2 - 30).toFixed(1)}
+            align="center"
+          />
+          <ListItemText primary="°C" align="right" />
         </ListItem>
       </React.Fragment>
     );

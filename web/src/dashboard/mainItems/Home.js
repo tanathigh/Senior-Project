@@ -53,7 +53,7 @@ class Home extends Component {
                 <TableCell>{row.status}</TableCell>
                 <TableCell align="right">
                   {row.status === "on" && (
-                    <button type="button" onClick={() => this.sendData("3")}>
+                    <button type="button" onClick={() => this.sendData("1")}>
                       Choose
                     </button>
                   )}
