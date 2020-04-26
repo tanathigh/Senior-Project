@@ -33,6 +33,7 @@ class OUT extends Component {
     return (
       <React.Fragment>
         <Title>OUTPUT</Title>
+        <br />
         <Table size="small">
           <TableHead>
             <TableRow style={{ backgroundColor: "#343a40" }}>
@@ -40,41 +41,77 @@ class OUT extends Component {
               <TableCell style={{ color: "white" }} align="right">
                 Status
               </TableCell>
+              <TableCell style={{ color: "white" }} align="right">
+                Description
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell>heater</TableCell>
+              <TableCell>Ini Temp</TableCell>
               <TableCell align="right">
-                {this.props.data[2] ? "ON" : "OFF"}
+                <ListItemText
+                  secondary={(this.props.data[3] / 2 - 30).toFixed(1)}
+                  align="right"
+                />
               </TableCell>
+              <TableCell align="right">[20-35 °C]</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>pump</TableCell>
+              <TableCell>Blower </TableCell>
               <TableCell align="right">
-                {this.props.data[12] ? "ON" : "OFF"}
+                <ListItemText
+                  secondary={(this.props.data[1] / 640).toFixed(1)}
+                  align="right"
+                />
               </TableCell>
+              <TableCell align="right">[0-50 Hz]</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>blower(Hz)</TableCell>
+              <TableCell>Heater</TableCell>
               <TableCell align="right">
-                {(this.props.data[1]/640).toFixed(1) > 0 ? (this.props.data[1]/640).toFixed(1) : "OFF"}
+                <ListItemText
+                  secondary={this.props.data[2] ? "ON" : "OFF"}
+                  align="right"
+                />
               </TableCell>
+              <TableCell align="right">[ON/OFF]</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Pump</TableCell>
+
+              <TableCell align="right">
+                <ListItemText
+                  secondary={this.props.data[12] ? "ON" : "OFF"}
+                  align="right"
+                />
+              </TableCell>
+              <TableCell align="right">[ON/OFF]</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>damp on</TableCell>
+
               <TableCell align="right">
-                {this.props.data[10] ? "ON" : "OFF"}
+                <ListItemText
+                  secondary={this.props.data[10] ? "ON" : "OFF"}
+                  align="right"
+                />
               </TableCell>
+              <TableCell align="right">[ON/OFF]</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>damp off</TableCell>
               <TableCell align="right">
-                {this.props.data[9] ? "ON" : "OFF"}
+                <ListItemText
+                  secondary={this.props.data[9] ? "ON" : "OFF"}
+                  align="right"
+                />
               </TableCell>
+              <TableCell align="right">[ON/OFF]</TableCell>
             </TableRow>
           </TableBody>
         </Table>
+        <br />
       </React.Fragment>
     );
   }

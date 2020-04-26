@@ -27,6 +27,7 @@ class AlarmBit extends Component {
           <ListItemText primary="[0-4]" align="right" />
         </ListItem>
         <br />
+        <br />
         <ListItem>
           <ListItemText primary="0 : No alarm" />
         </ListItem>

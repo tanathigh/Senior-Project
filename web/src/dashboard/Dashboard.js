@@ -18,6 +18,7 @@ import Power from "./subItems/Power";
 import AlarmBit from "./subItems/AlarmBit";
 import Alarm from "./subItems/Alarm";
 import PVChart from "./subItems/PVChart";
+import Slider from "./subItems/Slider";
 import SV from "./subItems/SV";
 import PV from "./subItems/PV";
 import Out from "./subItems/Out";
@@ -137,7 +138,7 @@ class Dashboard extends Component {
             this.setState({
               data: Object.values(res.data.recordset[0]),
             });
-            console.log(Object.values(res.data.recordset[0]));
+            //console.log(Object.values(res.data.recordset[0]));
           }
         })
         .catch((error) => {
@@ -226,6 +227,16 @@ class Dashboard extends Component {
                 </Grid>
                 <Grid item xs={12} md={6} lg={6}>
                   <Paper className={classes.paper}>
+                    <Slider />
+                  </Paper>
+                </Grid>
+                <Grid item xs={12} md={6} lg={6}>
+                  <Paper className={classes.paper}>
+                    <Out data={this.state.data} />
+                  </Paper>
+                </Grid>
+                <Grid item xs={12} md={6} lg={6}>
+                  <Paper className={classes.paper}>
                     <PV data={this.state.data} />
                   </Paper>
                 </Grid>
@@ -237,11 +248,6 @@ class Dashboard extends Component {
                 <Grid item xs={12} md={3} lg={3}>
                   <Paper className={classes.paper}>
                     <AlarmBit data={this.state.data} />
-                  </Paper>
-                </Grid>
-                <Grid item xs={12} md={6} lg={6}>
-                  <Paper className={classes.paper}>
-                    <Out data={this.state.data} />
                   </Paper>
                 </Grid>
               </Grid>
@@ -270,9 +276,7 @@ class Dashboard extends Component {
             {this.state.page === "4" && (
               <Grid container spacing={3}>
                 <Grid item xs={12}>
-                  <Paper className={classes.paper}>
-                    <Alarm />
-                  </Paper>
+                  <Paper className={classes.paper}>{/* <Alarm /> */}</Paper>
                 </Grid>
               </Grid>
             )}

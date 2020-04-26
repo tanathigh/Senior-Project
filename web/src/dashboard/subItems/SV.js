@@ -4,7 +4,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import TemperatureIcon from "@material-ui/icons/AcUnit";
 import PressureIcon from "@material-ui/icons/Cloud";
-import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
+import HumidityIcon from "@material-ui/icons/Opacity";
 import Title from "../others/Title";
 
 class SV extends Component {
@@ -41,17 +41,14 @@ class SV extends Component {
           <ListItemText primary="°C" align="right" />
         </ListItem>
         <br />
-        <Title>IV</Title>
         <ListItem>
           <ListItemIcon>
-            <TemperatureIcon />
+            <HumidityIcon />
           </ListItemIcon>
-          <ListItemText
-            secondary={(this.props.data[3] / 2 - 30).toFixed(1)}
-            align="center"
-          />
-          <ListItemText primary="°C" align="right" />
+          <ListItemText primary="-" align="center" />
+          <ListItemText primary="%rh" align="right" />
         </ListItem>
+        <br />
       </React.Fragment>
     );
   }

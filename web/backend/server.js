@@ -42,7 +42,7 @@ app.get("/getHistory", function (req, res) {
     if (err) console.log(err);
     var request = new sql.Request();
     let queryString =
-      "SELECT TOP 50 TIMESTAMP,pv1,pv2,pv3 FROM LG ORDER BY Id DESC";
+      "SELECT TOP 100 TIMESTAMP,pv1,pv2,pv3 FROM LG ORDER BY Id DESC";
     request.query(queryString, function (err, recordset) {
       if (err) console.log(err);
       res.send(recordset);

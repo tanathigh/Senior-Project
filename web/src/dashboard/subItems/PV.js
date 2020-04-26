@@ -67,6 +67,7 @@ class PV extends Component {
           <ListItemText primary="[0-100]" align="right" />
         </ListItem>
         <ProgressBar animated variant="info" now={this.props.data[7] / 2} />
+        <br />
       </React.Fragment>
     );
   }
