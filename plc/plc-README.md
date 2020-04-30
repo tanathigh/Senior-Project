@@ -76,8 +76,8 @@ Pressure เซนเซอร์ Pressure เสีย
 -LESS	<SV-3  Pa		นานเกิน 1 นาที			->Alarm2 Blower ไม่ทำงาน
 
 Temperature เซนเซอร์ Temp เสีย
--MORE	PV>SV+3 C	นานเกิน 30 วิ	Pump ทำงาน	->Alarm4 Pump เสีย
--LESS	PV<SV-3  C	นานเกิน 30 วิ	Heater ติด		->Alarm5 Heater เสีย
+-MORE	PV>SV+3 C	นานเกิน 30 วิ	Pump ทำงาน	->Alarm3 Pump เสีย
+-LESS	PV<SV-3  C	นานเกิน 30 วิ	Heater ติด		->Alarm4 Heater เสีย
 เกิด Alarm เครื่องปิดทันที + รอการกดปุ่มรับทราบ
 //เทสโดยปรับเวลา alarm ให้สั้นๆ
 
