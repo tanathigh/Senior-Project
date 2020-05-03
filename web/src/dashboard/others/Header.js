@@ -10,7 +10,7 @@ class Header extends Component {
     super(props);
     this.state = {
       date: new Date(),
-      anchorEl: null
+      anchorEl: null,
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -24,7 +24,7 @@ class Header extends Component {
     clearInterval(this.timerID);
   }
 
-  handleClick = event => this.setState({ anchorEl: event.currentTarget });
+  handleClick = (event) => this.setState({ anchorEl: event.currentTarget });
   handleClose = () => this.setState({ anchorEl: null });
 
   tick() {
@@ -53,13 +53,13 @@ class Header extends Component {
               height: 40,
               padding: 0,
               marginLeft: 3,
-              marginRight: 3
+              marginRight: 3,
             }}
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={this.handleClick}
           >
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <Avatar src="/images/icon/avatar.png" />
           </IconButton>
           <Menu
             id="simple-menu"
@@ -68,7 +68,6 @@ class Header extends Component {
             open={Boolean(anchorEl)}
             onClose={this.handleClose}
           >
-            <MenuItem onClick={this.handleClose}>Edit Profile</MenuItem>
             <MenuItem
               onClick={this.handleClose}
               component={Link}

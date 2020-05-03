@@ -37,6 +37,30 @@ app.get("/getData", function (req, res) {
   });
 });
 
+app.get("/getEmp", function (req, res) {
+  sql.connect(config, function (err) {
+    if (err) console.log(err);
+    var request = new sql.Request();
+    let queryString = "SELECT * FROM EMP WHERE Id = " + req.query.id;
+    request.query(queryString, function (err, recordset) {
+      if (err) console.log(err);
+      res.send(recordset);
+    });
+  });
+});
+
+app.get("/getEmps", function (req, res) {
+  sql.connect(config, function (err) {
+    if (err) console.log(err);
+    var request = new sql.Request();
+    let queryString = "select [firstname],[lastname],[tel],[email] from emp where res=1"
+    request.query(queryString, function (err, recordset) {
+      if (err) console.log(err);
+      res.send(recordset);
+    });
+  });
+});
+
 app.get("/getHistory", function (req, res) {
   sql.connect(config, function (err) {
     if (err) console.log(err);
@@ -46,6 +70,46 @@ app.get("/getHistory", function (req, res) {
     request.query(queryString, function (err, recordset) {
       if (err) console.log(err);
       res.send(recordset);
+    });
+  });
+});
+
+app.get("/getAlarm", function (req, res) {
+  sql.connect(config, function (err) {
+    if (err) console.log(err);
+    var request = new sql.Request();
+    let queryString =
+      "SELECT TOP 100 [EventTime],[Message],[Severity],[ConditionActive] FROM [MyProject].[dbo].[ALM] ORDER BY [EventTime] DESC";
+    request.query(queryString, function (err, recordset) {
+      if (err) console.log(err);
+      res.send(recordset);
+    });
+  });
+});
+
+app.post("/editProfile", function (req, res) {
+  sql.connect(config, function (err) {
+    if (err) console.log(err);
+    var request = new sql.Request();
+    let queryString = new String(
+      "UPDATE emp SET firstname = '" +
+        req.body.fname +
+        "', lastname= '" +
+        req.body.lname +
+        "', tel='" +
+        req.body.tel +
+        "', res='" +
+        req.body.res +
+        "' WHERE email = '" +
+        req.body.email +
+        "';"
+    );
+    request.query(queryString, function (err, recordset) {
+      if (err) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(200);
+      }
     });
   });
 });
@@ -76,7 +140,10 @@ app.post("/signUp", function (req, res) {
     if (err) console.log(err);
     var request = new sql.Request();
     let queryString = new String(
-      "INSERT INTO emp (firstname, lastname, tel, email, password) VALUES ('" +
+      "BEGIN IF NOT EXISTS (SELECT * FROM EMP WHERE email = '" +
+        req.body.email +
+        "') BEGIN " +
+        "INSERT INTO emp (firstname, lastname, tel, email, password) VALUES ('" +
         req.body.fname +
         "','" +
         req.body.lname +
@@ -86,13 +153,15 @@ app.post("/signUp", function (req, res) {
         req.body.email +
         "','" +
         req.body.password +
-        "')"
+        "') END END"
     );
     request.query(queryString, function (err, recordset) {
-      if (err) {
+      if (recordset.rowsAffected[0] == 1) {
+        res.sendStatus(200);
+      } else if (err) {
         res.sendStatus(404);
       } else {
-        res.sendStatus(200);
+        res.sendStatus(300);
       }
     });
   });

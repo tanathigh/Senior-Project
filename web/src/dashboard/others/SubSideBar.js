@@ -8,11 +8,10 @@ import PeopleIcon from "@material-ui/icons/People";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import InfoIcon from "@material-ui/icons/Info";
 import Divider from "@material-ui/core/Divider";
-import Badge from "@material-ui/core/Badge";
 import ReportIcon from "@material-ui/icons/Report";
 
 const StyledListItem = styled(ListItem)({
-  backgroundColor: "#343a40"
+  backgroundColor: "#343a40",
 });
 
 class SubBar extends Component {
@@ -61,9 +60,7 @@ class SubBar extends Component {
           </ListItem>
           <ListItem button onClick={() => this.sendData("4")}>
             <ListItemIcon>
-              <Badge badgeContent={4} color="primary">
-                <ReportIcon />
-              </Badge>
+              <ReportIcon />
             </ListItemIcon>
             <ListItemText primary="Alarm Report" />
           </ListItem>

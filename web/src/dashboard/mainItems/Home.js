@@ -13,9 +13,9 @@ function createData(id, name, type, status) {
 }
 
 const rows = [
-  createData(0, "Climate 1", "Climate controller", "on"),
-  createData(1, "Belt 1", "Conveyor belt", "off"),
-  createData(2, "Arm 1", "Robotic arm", "off")
+  createData(0, "1", "Climate controller", "on"),
+  createData(1, "2", "Conveyor belt", "off"),
+  createData(2, "3", "Robotic arm", "off")
 ];
 
 const styles = theme => ({
@@ -39,10 +39,10 @@ class Home extends Component {
         <Table size="small">
           <TableHead>
             <TableRow style={{ backgroundColor: "#343a40" }}>
-              <TableCell style={{ color: "white" }}>Name</TableCell>
-              <TableCell style={{ color: "white" }}>Type</TableCell>
+              <TableCell style={{ color: "white" }}>Machine #</TableCell>
+              <TableCell style={{ color: "white" }}>Machine name</TableCell>
               <TableCell style={{ color: "white" }}>Connection status</TableCell>
-              <TableCell style={{ color: "white" }} align="right">Choose Machine</TableCell>
+              <TableCell style={{ color: "white" }} align="right">Select machine</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -54,7 +54,7 @@ class Home extends Component {
                 <TableCell align="right">
                   {row.status === "on" && (
                     <button type="button" onClick={() => this.sendData("1")}>
-                      Choose
+                      View
                     </button>
                   )}
                 </TableCell>

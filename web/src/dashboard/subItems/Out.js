@@ -1,25 +1,11 @@
 import React, { Component } from "react";
-import { ListItem } from "@material-ui/core";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import TemperatureIcon from "@material-ui/icons/AcUnit";
-import PressureIcon from "@material-ui/icons/Cloud";
 import Title from "../others/Title";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-
-function createData(id, name, responsibility, tel) {
-  return { id, name, responsibility, tel };
-}
-
-const styles = (theme) => ({
-  seeMore: {
-    marginTop: theme.spacing(3),
-  },
-});
 
 class OUT extends Component {
   constructor(props) {

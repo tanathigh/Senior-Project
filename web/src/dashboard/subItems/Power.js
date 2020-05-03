@@ -2,11 +2,8 @@ import React, { Component } from "react";
 import { ListItem } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import TemperatureIcon from "@material-ui/icons/AcUnit";
-import PressureIcon from "@material-ui/icons/Cloud";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import Title from "../others/Title";
-import { Chart } from "react-google-charts";
 
 class Power extends Component {
   constructor(props) {

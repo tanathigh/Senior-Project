@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { ListItem } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import TemperatureIcon from "@material-ui/icons/AcUnit";
-import PressureIcon from "@material-ui/icons/Cloud";
 import AlarmIcon from "@material-ui/icons/Alarm";
 import Title from "../others/Title";
 

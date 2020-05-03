@@ -6,18 +6,19 @@ import Dashboard from "../dashboard/Dashboard";
 // import { default as SignUp } from "./components/SignUp";
 
 class DashPage extends Component {
-  callbackFunction = childData => {
+  callbackFunction = (childData) => {
     this.setState({ page: childData });
   };
-  componentDidMount() {
-    console.log(this.props.location.state);
-  }
+
   render() {
     if (this.props.location.state != null) {
       return (
         <div>
           <Header />
-          <Dashboard parentCallback={this.callbackFunction} />
+          <Dashboard
+            parentCallback={this.callbackFunction}
+            id={this.props.location.state.id}
+          />
         </div>
       );
     } else {

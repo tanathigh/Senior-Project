@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import { ListItem } from "@material-ui/core";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import TemperatureIcon from "@material-ui/icons/AcUnit";
-import PressureIcon from "@material-ui/icons/Cloud";
-import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import Title from "../others/Title";
-import { render } from "react-dom";
 import { Chart } from "react-google-charts";
 import Button from "@material-ui/core/Button";
 
@@ -71,7 +64,7 @@ class PVChart extends Component {
         <Button onClick={this.handleClick1}>Show Pressure Chart</Button>
         <Button onClick={this.handleClick2}>Show Temperature Chart</Button>
         <Button onClick={this.handleClick3}>Show Humidity Chart</Button>
-        {this.state.num == 1 && (
+        {this.state.num === 1 && (
           <Chart
             width={"1200px"}
             height={"400px"}
@@ -93,7 +86,7 @@ class PVChart extends Component {
             rootProps={{ "data-testid": "2" }}
           />
         )}
-        {this.state.num == 2 && (
+        {this.state.num === 2 && (
           <Chart
             width={"1200px"}
             height={"400px"}
@@ -115,7 +108,7 @@ class PVChart extends Component {
             rootProps={{ "data-testid": "2" }}
           />
         )}
-        {this.state.num == 3 && (
+        {this.state.num === 3 && (
           <Chart
             width={"1200px"}
             height={"400px"}

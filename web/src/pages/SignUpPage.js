@@ -26,24 +26,24 @@ function Copyright() {
   );
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
+    margin: theme.spacing(3, 0, 2),
+  },
 });
 
 class SignUp extends Component {
@@ -56,14 +56,14 @@ class SignUp extends Component {
         tel: "",
         email: "",
         password: "",
-        repeatPassword: ""
+        repeatPassword: "",
       },
-      status: null
+      status: null,
     };
   }
 
   componentDidMount() {
-    ValidatorForm.addValidationRule("isPasswordMatch", value => {
+    ValidatorForm.addValidationRule("isPasswordMatch", (value) => {
       if (value !== this.state.user.password) {
         return false;
       }
@@ -75,7 +75,7 @@ class SignUp extends Component {
     ValidatorForm.removeValidationRule("isPasswordMatch");
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { user } = this.state;
     user[event.target.name] = event.target.value;
     this.setState({ user });
@@ -87,18 +87,20 @@ class SignUp extends Component {
     axios
       .post("http://localhost:9000/signUp/", obj, {
         headers: {
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       })
-      .then(function(res) {
+      .then(function (res) {
         console.log(res.status);
-        if (res.status === "200") {
-          self.setState({ status: true });
+        if (res.status == "200") {
+          self.setState({ status: "200" });
         } else {
-          self.setState({ status: false });
+          self.setState({ status: "200" });
         }
+        console.log(self.state.status);
       })
-      .catch(function(error) {
+      .catch(function (error) {
+        self.setState({ status: "404" });
         console.log(error);
       });
   };
@@ -121,7 +123,7 @@ class SignUp extends Component {
             className={classes.form}
             ref="form"
             onSubmit={this.handleSubmit}
-            onError={errors => console.log(errors)}
+            onError={(errors) => console.log(errors)}
           >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -134,7 +136,7 @@ class SignUp extends Component {
                   validators={["required", "matchRegexp:^[A-Za-z]+$"]}
                   errorMessages={[
                     "this field is required",
-                    "firstname is not valid"
+                    "firstname is not valid",
                   ]}
                   value={user.fname}
                   onChange={this.handleChange}
@@ -150,7 +152,7 @@ class SignUp extends Component {
                   validators={["required", "matchRegexp:^[A-Za-z]+$"]}
                   errorMessages={[
                     "this field is required",
-                    "lastname is not valid"
+                    "lastname is not valid",
                   ]}
                   value={user.lname}
                   onChange={this.handleChange}
@@ -179,7 +181,7 @@ class SignUp extends Component {
                   validators={["required", "isEmail"]}
                   errorMessages={[
                     "this field is required",
-                    "email is not valid"
+                    "email is not valid",
                   ]}
                   value={user.email}
                   onChange={this.handleChange}
@@ -210,7 +212,7 @@ class SignUp extends Component {
                   validators={["isPasswordMatch", "required"]}
                   errorMessages={[
                     "password mismatch",
-                    "this field is required"
+                    "this field is required",
                   ]}
                   value={user.repeatPassword}
                   onChange={this.handleChange}
@@ -226,11 +228,14 @@ class SignUp extends Component {
             >
               Sign Up
             </Button>
-            {this.state.status === true && (
+            {this.state.status == "200" && (
               <Alert severity="success">Signup Successful</Alert>
             )}
-            {this.state.status === false && (
-              <Alert severity="warning">Signup failed</Alert>
+            {this.state.status == "404" && (
+              <Alert severity="warning">This email address is invalid</Alert>
+            )}
+            {this.state.status == "300" && (
+              <Alert severity="error">Signup failed</Alert>
             )}
             <Grid container justify="flex-end">
               <Grid item>
