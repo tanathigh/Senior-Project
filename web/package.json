@@ -44,7 +44,7 @@
     "tedious": "^8.0.1",
     "typeface-roboto": "0.0.75",
     "websocket": "^1.0.31",
-    "ws": "^7.2.1"
+    "ws": "^7.4.6"
   },
   "scripts": {
     "start": "react-scripts start",
