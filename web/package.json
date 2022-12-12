@@ -18,7 +18,7 @@
     "edge": "^7.10.1",
     "edge-js": "^13.0.1",
     "edge-ms-sql": "^0.1.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "hapi-auth-jwt2": "^9.0.1",
     "http": "0.0.0",
     "jsonwebtoken": "^8.5.1",
